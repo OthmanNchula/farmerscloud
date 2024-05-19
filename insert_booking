@@ -1,0 +1,20 @@
+<?php
+$conn=mysqli_connect("localhost","root","", "farmerscloudsystem");
+if(mysqli_connect_error()){
+    die("Database connection failed:" . mysqli_connect_error());
+}
+    // Retrieve form data
+    $username = $_POST["usename"];
+    $productid = $_POST["pid"];
+    $quantity = $_POST["quantity"];
+    $orderDate = $_POST["orderDate"];
+    $requiredDate = $_POST["requiredDate"];
+
+    // Prepare and execute the SQL query to insert data into the product table
+    $sql = "INSERT INTO booking VALUES('','$username', '$productid', '$quantity', '$orderDate', '$requiredDate')";
+  if(!mysqli_query($conn,$sql)){
+    die('Error:' . mysqli_error($conn));
+  }
+  echo "row inserted";
+  header("location: booking.php");
+?>
